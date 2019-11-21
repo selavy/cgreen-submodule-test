@@ -16,6 +16,9 @@ else ()
 	add_subdirectory(third_party)
 endif (USE_SYSTEM_CGREEN)
 
+message("CGreen INCLUDE_DIRS = ${CGREEN_INCLUDE_DIRS}")
+message("CGreen LIBRARIES    = ${CGREEN_LIBRARIES}")
+
 add_library(MyLib
     src/mylib.c
     )

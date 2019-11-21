@@ -2,6 +2,8 @@ GENERATOR=Ninja
 
 all: build/system/test-mylib build/submodule/test-mylib
 
+run: clean-submodule build/submodule/test-mylib
+
 build/system:
 	mkdir -p build/system
 	cmake -Bbuild/system -H. -DCMAKE_BUILD_TYPE=Debug -DBUILD_SHARED_LIBS=ON -DUSE_SYSTEM_CGREEN=ON -G$(GENERATOR)
@@ -16,9 +18,12 @@ build/submodule:
 build/submodule/test-mylib: build/submodule
 	ninja -Cbuild/submodule
 
-.PHONY: clean purge
+.PHONY: clean purge clean-submodule
 clean:
 	ninja -Cbuild/system clean
+
+clean-submodule:
+	rm -rf build/submodule
 
 purge:
 	rm -rf build/
