@@ -6,9 +6,15 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 
-# add_subdirectory(third_party)
+option(USE_SYSTEM_CGREEN "Use system install version of CGreen" ON)
+message("Use system cgreen? ${USE_SYSTEM_CGREEN}")
 
-find_package(cgreen REQUIRED)
+if (USE_SYSTEM_CGREEN)
+	# To use system version of CGreen:
+	find_package(cgreen REQUIRED)
+else ()
+	add_subdirectory(third_party)
+endif (USE_SYSTEM_CGREEN)
 
 add_library(MyLib
     src/mylib.c
