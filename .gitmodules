@@ -1,0 +1,3 @@
+[submodule "third_party/cgreen"]
+	path = third_party/cgreen
+	url = git@github.com:cgreen-devs/cgreen.git
